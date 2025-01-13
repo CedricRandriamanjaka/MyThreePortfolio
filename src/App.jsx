@@ -9,10 +9,11 @@ export default function App() {
       style={{
         width: '100vw',
         height: '100vh',
-        background: 'linear-gradient(180deg, #4a4fac 0%, #676fde 50%, #8ea8f3 100%)', // Fond dégradé
+        background: 'linear-gradient(98deg, rgba(133,44,224,1) 10%, rgba(181,126,237,1) 30%, rgb(229, 255, 99) 100%)', // Fond dégradé
         overflow: 'hidden',
       }}
     >
+
       <Canvas
         shadows
         dpr={[1, 1.5]}
