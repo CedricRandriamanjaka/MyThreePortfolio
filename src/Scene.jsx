@@ -44,18 +44,18 @@ export function Scene() {
       /> */}
 
       {/* Grid au sol (optionnel) */}
-      {/* <Grid
-        position={[0, -1, 0]}
+       {/* <Grid
+        position={[0, 0, 0]}
         args={[100, 100]}
         sectionColor="#bbb"
         fadeDistance={30}
-      /> */}
+      />  */}
 
       {/* Chargement asynchrone de l'environnement HDRI et des modèles */}
       <Suspense fallback={null}>
         {/* Environment 3D (HDRI) : tu peux tester différents presets (sunset, dawn, warehouse, city...) */}
         <Environment
-          preset="dawn"
+          preset="dawn" // sunset, dawn, warehouse, city...
           background={false} // ou true si tu veux utiliser l'HDRI en fond
         />
 
@@ -83,6 +83,9 @@ export function Scene() {
         enableDamping
         dampingFactor={0.05}
         maxPolarAngle={Math.PI / 2} // limite la rotation vers le bas
+        enableRotate={false} 
+       enableZoom={false} 
+        enablePan={false}
       />
     </>
   )

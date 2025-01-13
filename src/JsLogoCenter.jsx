@@ -17,16 +17,17 @@ export function JsLogoCenter() {
 
   let logoIndex = 0;
   const rotationSpeed = 0.05; // Vitesse de rotation
-  const resetRotation = -Math.PI / 2; // Position initiale de rotation (-90°)
+  const resetRotation = -Math.PI / 2 + 0.78; // Position initiale de rotation (-90°)
 
+  
   // Initialiser correctement la position de rotation
   useFrame(() => {
     if (logoRef.current) {
       // Rotation continue
       logoRef.current.rotation.y += rotationSpeed;
-
+      
       // Vérifie si une demi-rotation est atteinte
-      if (logoRef.current.rotation.y >= Math.PI / 2) {
+      if (logoRef.current.rotation.y >= (Math.PI / 2) + 0.78 ) {
         // Remettre à la rotation initiale (-90°)
         logoRef.current.rotation.y = resetRotation;
 
@@ -45,7 +46,7 @@ export function JsLogoCenter() {
       ref={logoRef}
       // Assurer que la position initiale est bien respectée
       rotation={[0, resetRotation, 0]} // -90° sur l'axe Y
-      position={[0, 0, 0]}
+      position={[-1.5, 0, 0]}
     >
       <planeGeometry args={[0.5, 0.5]} />
       <meshBasicMaterial

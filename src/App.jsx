@@ -5,27 +5,26 @@ import * as THREE from 'three';
 
 export default function App() {
   return (
-    <div style={{ width: '100vw', height: '100vh' }}>
+    <div
+      style={{
+        width: '100vw',
+        height: '100vh',
+        background: 'linear-gradient(180deg, #4a4fac 0%, #676fde 50%, #8ea8f3 100%)', // Fond dégradé
+        overflow: 'hidden',
+      }}
+    >
       <Canvas
         shadows
         dpr={[1, 1.5]}
         camera={{
-          position: [1.7028081314405727, -0.015015088491293726, -1.3014546306937234], // Position de la caméra
+          position: [0, 0.49, 1.8], // Position de la caméra
           fov: 60,
           near: 0.1,
           far: 100,
         }}
         onCreated={(state) => {
           state.gl.physicallyCorrectLights = true;
-          state.scene.fog = new THREE.Fog('#cfde8f', 5, 15);
-          state.gl.setClearColor('#cfde8f', 1);
-
-          // Définir la direction de la caméra (cible)
-          const lookAtPoint = new THREE.Vector3(-1, -6.112456631890, -2.22044604925031); // Point vers lequel regarder
-          state.camera.lookAt(lookAtPoint);
-
-          console.log('Position de la caméra :', state.camera.position);
-          console.log('Cible de la caméra :', lookAtPoint);
+          state.scene.fog = null; // Supprime le brouillard si nécessaire
         }}
       >
         <Scene />
