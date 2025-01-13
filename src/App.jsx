@@ -1,26 +1,34 @@
-import { Suspense } from 'react';
+import React from 'react';
 import { Canvas } from '@react-three/fiber';
-import { Environment, OrbitControls } from '@react-three/drei';
-import InteractiveSphere from './InteractiveSphere';
-import JsLogoCenter from './JsLogoCenter'
+import { Scene } from './Scene'; // Garde le même composant Scene
+import * as THREE from 'three';
 
 export default function App() {
   return (
-    <div style={{ width: '100vw', height: '100vh', background: '#eef' }}>
-      <Canvas camera={{ position: [0, 0, 5], fov: 60 }}>
-        {/* Lumière ambiante et directionnelle */}
-        <ambientLight intensity={0.1} />
-        <directionalLight intensity={1} position={[2, 5, 2]} castShadow />
+    <div style={{ width: '100vw', height: '100vh' }}>
+      <Canvas
+        shadows
+        dpr={[1, 1.5]}
+        camera={{
+          position: [1.7028081314405727, -0.015015088491293726, -1.3014546306937234], // Position de la caméra
+          fov: 60,
+          near: 0.1,
+          far: 100,
+        }}
+        onCreated={(state) => {
+          state.gl.physicallyCorrectLights = true;
+          state.scene.fog = new THREE.Fog('#cfde8f', 5, 15);
+          state.gl.setClearColor('#cfde8f', 1);
 
-        {/* On attend le chargement de l’Environment */}
-        <Suspense fallback={null}>
-          <Environment preset="dawn" />
-          <InteractiveSphere />
-          <JsLogoCenter />
-          {/* Autres objets */}
-        </Suspense>
+          // Définir la direction de la caméra (cible)
+          const lookAtPoint = new THREE.Vector3(-1, -6.112456631890, -2.22044604925031); // Point vers lequel regarder
+          state.camera.lookAt(lookAtPoint);
 
-        <OrbitControls />
+          console.log('Position de la caméra :', state.camera.position);
+          console.log('Cible de la caméra :', lookAtPoint);
+        }}
+      >
+        <Scene />
       </Canvas>
     </div>
   );

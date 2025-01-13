@@ -17,7 +17,7 @@ const vertexShader = /* glsl */ `
     vec4 worldPosition = modelMatrix * vec4(position, 1.0);
     vWorldPos = worldPosition.xyz;
 
-    // Onde autour de la souris
+    // Calcul d'une déformation en fonction de la position de la souris
     float distMouse = distance(worldPosition.xy, u_mouse * 2.0);
     float amplitude = 0.3;
     float displacement = amplitude * exp(-5.0 * distMouse * distMouse);
@@ -43,33 +43,33 @@ const fragmentShader = /* glsl */ `
     vec3 normal = normalize(vNormal);
     vec3 viewDir = normalize(cameraPosition - vWorldPos);
 
-    // Réfraction simplifiée
-    float ior = 1.33; // indice ~ eau
+    // Indice de réfraction (type eau/verre)
+    float ior = 1.33;
     vec3 refractionDir = refract(-viewDir, normal, 1.0 / ior);
 
-    // Si pas d'envMap, fallback
+    // Si pas de map d'environnement, on renvoie simplement un bleu clair
     if (!u_hasEnvMap) {
       gl_FragColor = vec4(0.8, 0.9, 1.0, 0.6);
       return;
     }
 
-    // Approx. sampling sphérique de la map
+    // Transformation du vecteur de réfraction en coordonnées UV
     float u = 0.5 + atan(refractionDir.z, refractionDir.x) / (2.0 * 3.14159);
     float v = 0.5 - asin(refractionDir.y) / 3.14159;
     vec3 envColor = texture2D(u_envMap, vec2(u, v)).rgb;
 
-    // Fresnel
+    // Calcul d’un effet Fresnel basique
     float fresnel = pow(1.0 - dot(viewDir, normal), 3.0);
-    vec3 baseColor = mix(envColor, vec3(0.7, 0.85, 1.0), 0.2);
 
-    // Mix refraction + highlight
+    // Couleur de base, qu’on peut blender avec la couleur de l’environnement
+    vec3 baseColor = mix(envColor, vec3(0.7, 0.85, 1.0), 0.2);
     vec3 finalColor = mix(baseColor, vec3(1.0), fresnel * 0.2);
 
-    // Transparence
     gl_FragColor = vec4(finalColor, 0.6);
   }
 `
 
+// On crée le ShaderMaterial avec drei
 const SphereMaterial = shaderMaterial(
   {
     u_time: 0,
@@ -81,9 +81,10 @@ const SphereMaterial = shaderMaterial(
   fragmentShader
 )
 
+// On l’enregistre pour pouvoir l’utiliser comme <sphereMaterial />
 extend({ SphereMaterial })
 
-export default function SphereShaderMaterial(props) {
+export function SphereShaderMaterial(props) {
   return (
     <sphereMaterial
       attach="material"

@@ -1,44 +1,34 @@
-// InteractiveSphere.js
-import React, { useRef, useState, useEffect } from 'react'
+import React, { useRef, useEffect } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
 import * as THREE from 'three'
-import SphereShaderMaterial from './SphereShaderMaterial'
+import { SphereShaderMaterial } from './SphereShaderMaterial'
 
-export default function InteractiveSphere() {
+export function InteractiveSphere() {
   const sphereRef = useRef()
-  const [uMouse] = useState(() => new THREE.Vector2(0, 0))
   const { scene, pointer } = useThree()
 
-  // Surveiller l'arrivée de scene.environment via un useEffect
   useEffect(() => {
-    const mat = sphereRef.current.material
-    if (!mat) return
-    if (scene.environment) {
-      // Forcer CubeUVReflectionMapping
+    const material = sphereRef.current?.material
+    if (material && scene.environment) {
+      // On force le mapping de l’environnement à cube reflection
       scene.environment.mapping = THREE.CubeUVReflectionMapping
-      mat.uniforms.u_envMap.value = scene.environment
-      mat.uniforms.u_hasEnvMap.value = true
-    } else {
-      mat.uniforms.u_envMap.value = null
-      mat.uniforms.u_hasEnvMap.value = false
+      material.uniforms.u_envMap.value = scene.environment
+      material.uniforms.u_hasEnvMap.value = true
     }
-  }, [scene.environment]) // se déclenche si la référence environment change
+  }, [scene.environment])
 
-  useFrame((_, delta) => {
-    if (!sphereRef.current) return
-
-    const mat = sphereRef.current.material
-    // Avancer le temps
-    mat.uniforms.u_time.value += delta
-
-    // Position de la souris
-    uMouse.set(pointer.x, pointer.y)
-    mat.uniforms.u_mouse.value = uMouse
+  useFrame((state, delta) => {
+    const material = sphereRef.current?.material
+    if (material) {
+      material.uniforms.u_time.value += delta
+      // On récupère la position du pointeur (-1 à +1)
+      material.uniforms.u_mouse.value.set(pointer.x, pointer.y)
+    }
   })
 
   return (
-    <mesh ref={sphereRef}>
-      <sphereGeometry args={[1, 128, 128]} />
+    <mesh ref={sphereRef} position={[0, 0, 0]} castShadow receiveShadow>
+      <sphereGeometry args={[1, 64, 64]} />
       <SphereShaderMaterial />
     </mesh>
   )
