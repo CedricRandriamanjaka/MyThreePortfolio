@@ -16,7 +16,7 @@ export function JsLogoCenter() {
   ];
 
   let logoIndex = 0;
-  const rotationSpeed = 0.05; // Vitesse de rotation
+  const rotationSpeed = 0.01; // Vitesse de rotation
   const resetRotation = -Math.PI / 2 + 0.78; // Position initiale de rotation (-90°)
 
   
@@ -27,7 +27,7 @@ export function JsLogoCenter() {
       logoRef.current.rotation.y += rotationSpeed;
       
       // Vérifie si une demi-rotation est atteinte
-      if (logoRef.current.rotation.y >= (Math.PI / 2) + 0.78 ) {
+      if (logoRef.current.rotation.y >= (Math.PI / 2) + 0.7 ) {
         // Remettre à la rotation initiale (-90°)
         logoRef.current.rotation.y = resetRotation;
 
