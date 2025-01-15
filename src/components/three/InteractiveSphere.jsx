@@ -28,7 +28,7 @@ export function InteractiveSphere() {
 
   return (
     <mesh ref={sphereRef} position={[-1.5, 0, 0]} castShadow receiveShadow>
-      <sphereGeometry args={[1.2, 64, 64]} />
+      <sphereGeometry args={[1.2, 32, 32]} />
       <SphereShaderMaterial />
     </mesh>
   )

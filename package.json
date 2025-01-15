@@ -10,11 +10,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@chakra-ui/react": "^3.3.1",
+    "@emotion/react": "^11.14.0",
     "@react-three/drei": "^9.120.8",
     "@react-three/fiber": "^8.17.12",
     "@react-three/postprocessing": "^2.16.6",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-router-dom": "^7.1.1",
     "three": "^0.172.0"
   },
   "devDependencies": {
