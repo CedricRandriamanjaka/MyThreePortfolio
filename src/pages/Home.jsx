@@ -1,153 +1,52 @@
 import React from 'react';
-import { Box, Heading, Text, VStack } from '@chakra-ui/react';
+import { Box, Heading, Text, Mark, Image } from '@chakra-ui/react';
 
 const Home = () => {
-    return (
-        <Box
-            minH="100vh" // Hauteur minimale pour couvrir l'écran
-            // display="flex"
-            alignItems="center"
+  return (
+    <Box
+      minH="100vh"
+      display="flex"
+      flexDirection="column"
+      justifyContent="center"
+    >
+      {/* Nom principal */}
+      <Heading as="h1" size="6xl" color="teal.500" >
+        Cedric <br /> Randriamanjaka
+      </Heading>
+
+      {/* Slogan */}
+      <Heading
+        as="h2"
+        size="2xl"
+        color="teal.100"
+        mt={6}
+        lineHeight="shorter"
+      >
+        <Text fontSize="xl" mb={2}>
+          À votre service en tant que
+        </Text>
+        <Mark
+          bg="transparent"
+          color="red.500"
+          fontStyle="italic"
+          position="relative"
+          display="inline-block"
         >
-            <VStack
-                align="flex-start"
-                spacing={4}
-                bg="white"
-                p={6}
-                borderRadius="md"
-                boxShadow="lg"
-            >
-                <Heading as="h1" size="xl" color="teal.500">
-                    Welcome to My Portfolio
-                </Heading>
-                <Text fontSize="lg" color="gray.700">
-                    This is the home page of my portfolio. Stay tuned for more updates!
-                </Text>
-                <Text fontSize="md" color="gray.500">
-                    Explore my projects, skills, and get in touch to learn more about my work.
-                </Text>
-            </VStack>
-            <VStack
-                align="flex-start"
-                spacing={4}
-                bg="white"
-                p={6}
-                borderRadius="md"
-                boxShadow="lg"
-            >
-                <Heading as="h1" size="xl" color="teal.500">
-                    Welcome to My Portfolio
-                </Heading>
-                <Text fontSize="lg" color="gray.700">
-                    This is the home page of my portfolio. Stay tuned for more updates!
-                </Text>
-                <Text fontSize="md" color="gray.500">
-                    Explore my projects, skills, and get in touch to learn more about my work.
-                </Text>
-            </VStack><VStack
-                align="flex-start"
-                spacing={4}
-                bg="white"
-                p={6}
-                borderRadius="md"
-                boxShadow="lg"
-            >
-                <Heading as="h1" size="xl" color="teal.500">
-                    Welcome to My Portfolio
-                </Heading>
-                <Text fontSize="lg" color="gray.700">
-                    This is the home page of my portfolio. Stay tuned for more updates!
-                </Text>
-                <Text fontSize="md" color="gray.500">
-                    Explore my projects, skills, and get in touch to learn more about my work.
-                </Text>
-            </VStack><VStack
-                align="flex-start"
-                spacing={4}
-                bg="white"
-                p={6}
-                borderRadius="md"
-                boxShadow="lg"
-            >
-                <Heading as="h1" size="xl" color="teal.500">
-                    Welcome to My Portfolio
-                </Heading>
-                <Text fontSize="lg" color="gray.700">
-                    This is the home page of my portfolio. Stay tuned for more updates!
-                </Text>
-                <Text fontSize="md" color="gray.500">
-                    Explore my projects, skills, and get in touch to learn more about my work.
-                </Text>
-            </VStack><VStack
-                align="flex-start"
-                spacing={4}
-                bg="white"
-                p={6}
-                borderRadius="md"
-                boxShadow="lg"
-            >
-                <Heading as="h1" size="xl" color="teal.500">
-                    Welcome to My Portfolio
-                </Heading>
-                <Text fontSize="lg" color="gray.700">
-                    This is the home page of my portfolio. Stay tuned for more updates!
-                </Text>
-                <Text fontSize="md" color="gray.500">
-                    Explore my projects, skills, and get in touch to learn more about my work.
-                </Text>
-            </VStack><VStack
-                align="flex-start"
-                spacing={4}
-                bg="white"
-                p={6}
-                borderRadius="md"
-                boxShadow="lg"
-            >
-                <Heading as="h1" size="xl" color="teal.500">
-                    Welcome to My Portfolio
-                </Heading>
-                <Text fontSize="lg" color="gray.700">
-                    This is the home page of my portfolio. Stay tuned for more updates!
-                </Text>
-                <Text fontSize="md" color="gray.500">
-                    Explore my projects, skills, and get in touch to learn more about my work.
-                </Text>
-            </VStack><VStack
-                align="flex-start"
-                spacing={4}
-                bg="white"
-                p={6}
-                borderRadius="md"
-                boxShadow="lg"
-            >
-                <Heading as="h1" size="xl" color="teal.500">
-                    Welcome to My Portfolio
-                </Heading>
-                <Text fontSize="lg" color="gray.700">
-                    This is the home page of my portfolio. Stay tuned for more updates!
-                </Text>
-                <Text fontSize="md" color="gray.500">
-                    Explore my projects, skills, and get in touch to learn more about my work.
-                </Text>
-            </VStack><VStack
-                align="flex-start"
-                spacing={4}
-                bg="white"
-                p={6}
-                borderRadius="md"
-                boxShadow="lg"
-            >
-                <Heading as="h1" size="xl" color="teal.500">
-                    Welcome to My Portfolio
-                </Heading>
-                <Text fontSize="lg" color="gray.700">
-                    This is the home page of my portfolio. Stay tuned for more updates!
-                </Text>
-                <Text fontSize="md" color="gray.500">
-                    Explore my projects, skills, and get in touch to learn more about my work.
-                </Text>
-            </VStack>
-        </Box>
-    );
+          Développeur
+          <Image
+            src="https://uploads-ssl.webflow.com/5fac11c3554384e2baf6481c/61c4dc7572d22f05ba26fd34_hero-underline.svg"
+            alt="Soulignement décoratif"
+            position="absolute"
+            bottom={-1}
+            left={0}
+            transform="translateY(50%)"
+            width="full"
+            height="auto"
+          />
+        </Mark>
+      </Heading>
+    </Box>
+  );
 };
 
 export default Home;

@@ -1,13 +1,17 @@
 import React from 'react';
-import { Canvas } from '@react-three/fiber';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Canvas } from '@react-three/fiber';
 import { Scene } from './components/three/Scene';
 import Home from './pages/Home';
-import './App.css';  // <-- on importe notre CSS
+import Header from './components/Header'; // <-- Import du Header
+import './App.css';
 
 export default function App() {
   return (
     <Router>
+          {/* En-tête */}
+          <Header />
+
       <div
         style={{
           position: 'relative',
@@ -44,6 +48,7 @@ export default function App() {
         <div className="container">
           <Routes>
             <Route path="/" element={<Home />} />
+            {/* Ajoutez d'autres routes ici */}
           </Routes>
         </div>
       </div>
