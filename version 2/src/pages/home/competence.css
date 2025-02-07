@@ -1,0 +1,152 @@
+/* --------------------------------------------------------- */
+/*   Styles pour la rotation 3D au hover                     */
+/* --------------------------------------------------------- */
+
+.card-container {
+  width: 240px;         /* même taille que la card */
+  height: 330px;
+  margin: 100px auto;   /* centre la card */
+  perspective: 1000px;  /* nécessaire pour l'effet 3D */
+}
+
+.card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition: transform 0.7s ease;
+  transform-style: preserve-3d; 
+}
+
+.card:hover {
+  transform: rotateY(180deg);
+}
+
+.front,
+.back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border-radius: 16px;
+  backface-visibility: hidden; /* masque l’autre face en rotation */
+  overflow: hidden;
+}
+
+/* --------------------------------------------------------- */
+/*   Face avant : on reprend tes styles existants (vagues)   */
+/* --------------------------------------------------------- */
+
+.front {
+  /* On peut garder le background transparent ou le retirer
+     puisque tu as déjà des vagues animées au-dessus. */
+  background: transparent;
+  box-shadow: 0px 8px 28px -9px rgba(0,0,0,0.45);
+}
+
+.e-card.playing {
+  /* le style appliqué habituellement sur ta card */
+  border-radius: 16px;
+}
+
+/* Ton style wave existant */
+.wave {
+  position: absolute;
+  width: 540px;
+  height: 700px;
+  opacity: 0.6;
+  left: 0;
+  top: 0;
+  margin-left: -50%;
+  margin-top: -70%;
+  background: linear-gradient(
+    744deg,
+    #af40ff,
+    #5b42f3 60%,
+    #00ddeb
+  );
+}
+
+.wave:nth-child(2),
+.wave:nth-child(3) {
+  top: 210px;
+}
+
+/* Animation "play" sur les vagues */
+.playing .wave {
+  border-radius: 40%;
+  animation: wave 3000ms infinite linear;
+}
+
+.playing .wave:nth-child(2) {
+  animation-duration: 4000ms;
+}
+
+.playing .wave:nth-child(3) {
+  animation-duration: 5000ms;
+}
+
+@keyframes wave {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* icon et texte */
+.icon {
+  width: 3em;
+  margin-top: -1em;
+  padding-bottom: 1em;
+}
+
+.infotop {
+  text-align: center;
+  font-size: 20px;
+  position: absolute;
+  top: 5.6em;
+  left: 0;
+  right: 0;
+  color: #fff;
+  font-weight: 600;
+}
+
+.name {
+  font-size: 14px;
+  font-weight: 100;
+  position: relative;
+  top: 1em;
+  text-transform: lowercase;
+}
+
+/* --------------------------------------------------------- */
+/*   Face arrière : liste des technologies                   */
+/* --------------------------------------------------------- */
+
+.back {
+  /* On la tourne de 180° pour qu’elle soit masquée au départ */
+  transform: rotateY(180deg);
+  background: #242424;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.back h2 {
+  margin-bottom: 1rem;
+}
+
+.back ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.back li {
+  margin: 0.3rem 0;
+}

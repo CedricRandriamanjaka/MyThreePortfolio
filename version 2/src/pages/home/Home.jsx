@@ -110,7 +110,9 @@ const Home = () => {
             <Center
               position="sticky"
               top="10px"
-              zIndex={999}
+              zIndex={15}
+              margin="0 auto"
+              width="50%"
             >
               <Tabs.List
                 bg="bg.muted"
@@ -162,6 +164,7 @@ const Home = () => {
             </Tabs.Content>
           </Tabs.Root>
         </Box>
+
       </Center>
     </>
   );

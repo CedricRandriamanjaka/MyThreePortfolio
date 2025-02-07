@@ -7,7 +7,7 @@ import { FaMoon, FaSun } from "react-icons/fa";
 const Header = ({ toggleTheme }) => {
 
   return (
-    <Box px={6} py={4} position="fixed" width="100%" zIndex={1}>
+    <Box px={6} py={4} position="fixed" width="100%" zIndex={12}>
       <Flex align="center" mx="auto">
         <Heading as="h2" size="lg" letterSpacing="wider">
           R. Cedric

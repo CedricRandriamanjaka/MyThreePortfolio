@@ -147,6 +147,7 @@ export const ChatGemini = () => {
             onChange={(e) => setInputValue(e.target.value)}
             flex="1"
           />
+          
           <Tooltip label="Envoyer" placement="top">
             <IconButton
             borderRadius={1000}
