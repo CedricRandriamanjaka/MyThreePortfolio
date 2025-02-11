@@ -31,7 +31,18 @@ const Me = () => {
         Mon objectif : allier passion et expertise pour créer des solutions
         innovantes et uniques.
       </Blockquote>
+
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
       <Competence />
+
+      <br />
+      <br />
+      <br />
+      <br />
       <Timeline />
     </Box>
   );

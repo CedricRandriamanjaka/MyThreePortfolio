@@ -5,7 +5,7 @@
 .card-container {
   width: 240px;         /* même taille que la card */
   height: 330px;
-  margin: 100px auto;   /* centre la card */
+  margin: 50px auto;   /* centre la card */
   perspective: 1000px;  /* nécessaire pour l'effet 3D */
 }
 
